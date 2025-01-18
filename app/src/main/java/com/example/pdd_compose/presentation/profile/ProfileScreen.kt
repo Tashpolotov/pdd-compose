@@ -19,9 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.pdd_compose.R
 import com.example.pdd_compose.presentation.profile.component.ProfileComponent
-import com.example.pdd_compose.presentation.profile.component.SettingBottomSheet
 import com.example.pdd_compose.util.Resource
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,14 +38,6 @@ fun ProfileScreen(
 
     val profileState by viewModel.profile.collectAsState()
 
-    ModalBottomSheetLayout(
-        sheetState = sheetState,
-        sheetContent = {
-            SettingBottomSheet(onDismiss = {
-                coroutineScope.launch { sheetState.hide() } // Скрыть BottomSheet
-            })
-        }
-    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -68,11 +58,9 @@ fun ProfileScreen(
                     Log.d("ProfileScreen", "Profile data loaded successfully")
                     val profileData = (profileState as Resource.Success).data
                     ProfileComponent(
-                        onSettingsClick = {
-                            coroutineScope.launch { sheetState.show() } // Показать BottomSheet
-                        },
-                        onEditClick = { /* Действие при нажатии на иконку редактирования */ },
-                        onClickDelete = { /* Действие при нажатии на профиль */ },
+
+                        onEditClick = {  },
+                        onClickDelete = {  },
                         rank = profileData?.rank.toString(),
                         score = profileData!!.point_count,
                         nextRank = profileData.next_rank.toString(),
@@ -89,9 +77,8 @@ fun ProfileScreen(
                     Log.e("ProfileScreen", "Error loading profile: $errorMessage")
                 }
                 is Resource.Empty -> {
-                    // Handle empty state if needed
+
                 }
             }
         }
     }
-}

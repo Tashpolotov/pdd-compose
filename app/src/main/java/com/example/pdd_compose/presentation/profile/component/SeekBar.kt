@@ -22,7 +22,7 @@ fun CustomSeekBar(
         onValueChange = { newValue -> if (enabled) onProgressChange(newValue) },
         valueRange = 0f..100f,
         modifier = modifier
-            .height(10.dp), // Устанавливаем высоту
+            .height(10.dp),
         enabled = enabled,
         colors = SliderDefaults.colors(
             thumbColor = colorResource(id = R.color.color_FF9600),

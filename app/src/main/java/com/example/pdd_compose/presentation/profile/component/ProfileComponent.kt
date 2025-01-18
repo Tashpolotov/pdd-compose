@@ -21,7 +21,6 @@ import com.example.pdd_compose.R
 
 @Composable
 fun ProfileComponent(
-    onSettingsClick: @Composable () -> Unit,
     onEditClick: () -> Unit,
     onClickDelete:() -> Unit,
     name:String,

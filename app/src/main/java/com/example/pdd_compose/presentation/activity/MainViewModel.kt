@@ -37,15 +37,11 @@ class MainViewModel @Inject constructor(
         appEntryUseCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
             Log.d("MainViewModel123", "startDestionation: ${shouldStartFromHomeScreen}")
 
-            // Проверяем, есть ли сохраненный токен
             if (sharedPref.accessToken != null) {
-                // Если токен есть, всегда переходим на PddNavigation
                 startDestionation = Route.PddNavigation.route
             } else if (shouldStartFromHomeScreen) {
-                // Если онбординг еще не пройден
                 startDestionation = Route.AuthNavigation.route
             } else {
-                // Если онбординг пройден и нет токена
                 startDestionation = Route.AppStartNavigation.route
             }
 

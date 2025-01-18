@@ -33,7 +33,7 @@ fun SettingBottomSheet(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(2.dp)
-                .background(Color.Black) // Задайте цвет для вашей вьюшки
+                .background(Color.Black)
                 .align(alignment = Alignment.CenterHorizontally)
         )
         Text(modifier = Modifier

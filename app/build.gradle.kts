@@ -1,19 +1,19 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    id ("kotlin-kapt")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     id ("com.google.dagger.hilt.android")
-    id ("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.example.pdd_compose"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.pdd_compose"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -39,11 +39,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -52,8 +49,6 @@ android {
     }
     buildFeatures {
         buildConfig = true
-    }
-    buildFeatures {
         compose = true
     }
 }
@@ -80,52 +75,49 @@ dependencies {
     implementation (libs.com.squareup.okhttp3.logging.interceptor)
     implementation (libs.com.squareup.okhttp3.okhttp)
     //Splash Api
-    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(libs.androidx.core.splashscreen)
 
     //Compose Navigation
 
-    implementation ("androidx.navigation:navigation-compose:2.6.0")
+    implementation (libs.androidx.navigation.compose)
+
 
     //Dagger Hilt
-    implementation ("com.google.dagger:hilt-android:2.51.1")
-    kapt ("com.google.dagger:hilt-compiler:2.51.1")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation (libs.hilt.android)
+    ksp (libs.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
 
 
     //Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 
     //Coil
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation(libs.coil.compose)
 
     //Datastore
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation (libs.androidx.datastore.preferences)
 
     //Compose Foundation
-    implementation ("androidx.compose.foundation:foundation:1.4.3")
+    implementation (libs.androidx.foundation)
 
     //Accompanist
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
+    implementation (libs.accompanist.systemuicontroller)
 
     //Paging 3
+//
+//    implementation ("androidx.paging:paging-runtime:3.1.1")
+//    implementation ("androidx.paging:paging-compose:3.2.0-rc01")
 
-    implementation ("androidx.paging:paging-runtime:3.1.1")
-    implementation ("androidx.paging:paging-compose:3.2.0-rc01")
-
-    //Room
-
-    implementation ("androidx.room:room-runtime:$2.5.2")
-    kapt ("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
+//    //Room
+//
+//    implementation ("androidx.room:room-runtime:$2.5.2")
+//    kapt ("androidx.room:room-compiler:2.6.1")
+//    implementation ("androidx.room:room-ktx:2.6.1")
 
     implementation(libs.accompanist.navigation.animation)
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation ("androidx.compose.material3:material3:1.2.0-alpha02")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.androidx.compose.material3.material3)
 
-}
-
-kapt {
-    correctErrorTypes = true
 }
